@@ -2,13 +2,13 @@
 
 # Mi computador principal
 
-* Marca/modelo: System 76 Serval WS
+* Marca/modelo: HP 240 G4
 * Tipo: Notebook
-* Año adquisición: 2015
+* Año adquisición: 2017
 * Procesador:
-  * Marca/Modelo: Intel Core i7-4790K
-  * Velocidad Base: 4.00 GHz
-  * Velocidad Máxima: 4.40 GHz
+  * Marca/Modelo: Intel Core i3-5005U
+  * Velocidad Base: 2.00 GHz
+  * Velocidad Máxima: 2.40 GHz
   * Numero de núcleos: 4 
   * Humero de hilos: 2
   * Arquitectura: x86_64
@@ -19,37 +19,33 @@
   * L2: 256KB
   * L3: 8192KB
 * Memoria 
-  * Total: 32 GB
+  * Total: 4 GB
   * Tipo memoria: DDR3
   * Velocidad 1867 MHz
-  * Numero de (SO)DIMM: 4
+  * Numero de (SO)DIMM: 2
 * Tarjeta Gráfica
-  * Marca / Modelo: Nvidia GeForce GTX 980M
-  * Memoria dedicada: 8192 MB
-  * Resolución: 1920 x 1080
+  * Marca / Modelo: Intel HD Graphics 5500
+  * Memoria dedicada: 2133 MB
+  * Resolución: 1366 x 728
 * Disco 1: 
   * Marca: Samsung
-  * Tipo: SSD
+  * Tipo: HDD
   * Tamaño: 1TB
-  * Particiones: 4
+  * Particiones: 2
   * Sistema de archivos: EXT4, swap
 * Disco 2: 
-  * Marca: Samsung
+  * Marca: Kingston
   * Tipo: SSD
-  * Tamaño: 1TB
+  * Tamaño: 256 GB
   * Particiones: 1
   * Sistema de archivos: EXT4
 * Disco 3: 
-  * Marca: Samsung
-  * Tipo: SSD
-  * Tamaño: 1TB
-  * Particiones: 1
-  * Sistema de archivos: EXT4
+  * NO TIENE
   
-* Dirección MAC de la tarjeta wifi: 5C:E0:C5:D7:EE:48 
-* Dirección IP (Interna, del router): 192.168.0.129
-* Dirección IP (Externa, del ISP): 190.45.122.34
-* Proveedor internet: VTR Banda Ancha S.A.
+* Dirección MAC de la tarjeta wifi: 62-6D-C7-DC-19-17
+* Dirección IP (Interna, del router): 192.168.100.1
+* Dirección IP (Externa, del ISP): 181.43.37.115
+* Proveedor internet: Entel fibra optica
 
 
 
