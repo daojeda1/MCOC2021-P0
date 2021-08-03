@@ -1,5 +1,6 @@
 from numpy import zeros
 from time import perf_counter
+import numpy as np
 
 
 
@@ -18,3 +19,5 @@ dt = t2 - t1
 
 print(f"dt = {dt} s")
 
+#Agregamos la función matmul y la imprimimos en la consola
+print("AB =", np.matmul(A,B))
