@@ -112,3 +112,4 @@ plt.savefig("Rendimiento A@B.jpg")
 plt.show()
 
 archivo.close()
+
