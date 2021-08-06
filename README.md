@@ -68,6 +68,7 @@ e) ¿Qué versión de numpy está usando?
 Numpy 1.19.2
 
 f) Durante la ejecución de su código ¿se utiliza más de un procesador? Muestre una imagen (screenshot) de su uso de procesador durante alguna corrida para confirmar. 
+
 ![image](https://user-images.githubusercontent.com/53507891/128484506-719dc3eb-7160-42fb-ba26-a5e90d2fc068.png)
 
 En cuanto a procesadores, claramente se utiliza solo intel i3 5005U, sin embargo, si hablaramos de procesos, es claro que se ejecuta más de uno en simultaneo (imagen adjunta)
