@@ -52,6 +52,11 @@
 
 # "Desempeño MATMUL"
 
+
+![image](https://user-images.githubusercontent.com/53507891/128485611-0d393343-f0d3-4804-9506-67a739a40481.png)
+
+* El archivo txt con los resultados se encuentra en el repositorio
+
 a) ¿Cómo difiere del gráfico del profesor/ayudante?
 
 A grandes rasgos es un gráfico muy similar, sin embargo, nos podemos percatar de que el tamaño de la memoria RAM del profesor es notablemente mayor a la de mi computador, la cual posee 4 GB. Por otro lado, tambien nos podemos percatar que el valor de N para el cual mi computador llega a su limite es bastante menor a la del profesor, lo cual, claramente se deriva de las diferencias de RAM recien mencionadas entre otros motivos.
