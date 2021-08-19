@@ -84,3 +84,28 @@ f) Durante la ejecución de su código ¿se utiliza más de un procesador? Muest
 
 
 En cuanto a procesadores, claramente se utiliza solo intel i3 5005U, sin embargo, si hablaramos de procesos, es claro que se ejecuta más de uno en simultaneo (imagen adjunta)
+
+######################################################################################################################################################################
+
+# "Timing inv Numpy y Scipy"
+
+En la presente entrega se evaluo el desempeño de la función inv, utilizando numpy y scipy, para este ultimo, teniamos la posibilidad de aplicar overwrite o no. Nos pudimos
+percatar de que la libreria numpy era bastante más lenta, esto es debido al algrotimo de inversión que utiliza, el cual abordaremos más adelante.
+
+Para la libreria Scipy podemos percatarnos de que al aplicar overwrite=True el codigo corria mas rapido aprovechando de mejor manera la memoria del computador.
+
+Por otro lado se utilizó distintos formatos de numeros (float 16, 32, 64 y 128), sin embargo, no todos estaban disponibles debido a que nos vemos limitados tanto por la libreria
+como por las capacidades del computador.
+
+¿Que algoritmos de inversión cree que utiliza cada metodo (ver wiki)? Justifique
+
+Numpy lo que hace es usar factorización LU para resolver una ecuacion del tipo Ax = b, por lo tanto, asi logra encontrar la inversa del problema utilizando herramientas de algebra lineal. Por otro lado Scipy utiliza scipy.linalg.inv y por lo que se pude investigar tiene una herramienta que la ayuda a optimizar (Atlas). Dentro de la misma libreria se encuentra overwrite, la cual puede decidir si se sobreescribir o no la matriz en la memoria, y como se mencionó anterirormente el metodo ow= True es el más eficiente, debido a que usa de forma mas eficiente la memoria RAM del computador.
+
+¿Como incide el paralelismo y la estructura de caché de su procesador en el desempeño en cada caso? Justifique su comentario en base al uso de procesadores y memoria observado durante las corridas. 
+
+El paralelismo corresponde al uso eficiente de los nucleos del computador en forma simultanea, en la siguiente imagen podemos ver como los en este caso 4 nucleos del computado trabajan en forma simultanea para llevar a cabo la tarea solicitada por el programa ejecutandose.
+
+![image](https://user-images.githubusercontent.com/53507891/129987141-3e2ce489-ebe4-4564-804f-4407d506b0af.png)
+
+
+
