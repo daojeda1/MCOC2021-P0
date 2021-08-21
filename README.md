@@ -108,4 +108,40 @@ El paralelismo corresponde al uso eficiente de los nucleos del computador en for
 ![image](https://user-images.githubusercontent.com/53507891/129987141-3e2ce489-ebe4-4564-804f-4407d506b0af.png)
 
 
+######################################################################################################################################################################
 
+# "Desempeño de Solve y Eigh"
+
+En terminos de desempeño, podemos ver claramente que el modulo eigh es bastante inferior en velocidad de calculos y por tanto mayor en uso de memoria al modulo solve de scipy, esto se debe a que trabaja de forma más engorrosa y asume menos supuestos, por lo tanto, gasta mas memoria. Por otro lado el modulo solve de scipy es mucho más rapido y más aun a medida que asumimos supuestos tales como que A es positiva o simetrica. Sin embargo nos podemos percatar que el algoritmo más eficiente es el de invertir la matriz A y multiplicarla por el vector b dando asi el resultado de x. Por otro lado al usar un formato de numero más preciso, llegaremos a resultados mas exactos pero a costa de mayor uso en memoria, por esto mismo, es que se crearon 2 graficos de tiempo promedio para todos los algoritmos pedidos y sus variantes, los cuales difieren unicamente en que uno es para float y el otro para double, como dije antes, para no mezclar peras con manzanas.
+
+A continuación, podemos ver el gráfico con tiempos promedio de 10 corridas para todos los algoritmos utilizados
+
+ ![Grafico Promedio](https://user-images.githubusercontent.com/53507891/130304962-f4d234c0-b74b-4ede-a39c-4d4d9ab85584.jpg)
+ 
+ La leyenda corresponde a:
+ I = Invertir matriz mediante scipy y hacer matmul con el vector b para encontrar x
+ II,III,IV,V,VI,VII = Utilizar modulo scipy.linalg.solve con cada una de las posibles variantes del enunciado (overwrite = T or F and assume = sim or pos, etc...)
+ Ib,IIb,IIIb,IVb,Vb = Utilizar modulo scipy.linalg.eigh con cada una de las posibles variantes del enunciado (driver = ev, evd, evr, evx and overwrite = T or F))
+
+ ¿Como es la variabilidad del tiempo de ejecucion para cada algoritmo? 
+ 
+ Se puede ver perfectamente en el gráfico adjunto anteriormente, en el, podemos ver que el caso Vb es el mas lento, el cual corresponde al modulo eigh, con driver = 'evx' y overwrite_a = False, al parecer el driver exv seria el mas lento de todos, ademas, al no aplicar overwrite, utilizamos mas memoria del computador debido a que no estamos sobrescribiendo la matriz, por lo tanto, es razonable pensar que a mayor uso de memoria, mayor es el tiempo invertido en la solución del sistema.
+
+ ¿Qué algoritmo gana (en promedio) en cada caso? 
+ 
+ Fuera de lo que personalmente creia, el algoritmo que más rapidamente soluciona el sistema es el del caso I, es decir, el que simplemente invierte la matriz A y la multiplica por el vector b usando matmul (@). Cabe destacar, que para no comparar peras con manzanas, se creó un gráfico de N vs Tiempo promedio para los valores en formato double y otro distinto para los valores en formato float, sin embargo, en ambos graficos (adjuntos en la entrega de github) obtuvieron resultados similares todos los algoritmos y aún más importante, el ganador y perdedor fueron los mismos.
+ 
+ ¿Depende del tamaño de la matriz?
+ 
+ Claramente influye el tamaño de la matriz, debido a que requiere mucho mayor uso de memoria RAM una matriz más grande ralentiza el proceso. Se puede ver claramente en el gráfico como es creciente, a mayor valor de N, mayor valor de tiempo [segundos]
+ 
+ ¿A que se puede deber la superioridad de cada opción?
+ 
+ A la simplicidad por una parte, por esto creo que el más veloz es el que solo invierte y aplica matmul entre (A^-1 @ b) para encontrar x. Por otro lado, se debe tambien a las suposiciones que se hagan sobre una matriz A en especifico, si decimos que la matriz es de cierto tipo, le podemos evitar al algoritmo el realizar comprobaciones y solo se pone a trabajar directamente
+ 
+ ¿Su computador usa más de un proceso por cada corrida? ¿Que hay del uso de memoria (como crece)? 
+ 
+ ![image](https://user-images.githubusercontent.com/53507891/130305403-44bb69bb-d195-4e5f-9a22-4113451959fa.png)
+
+Definitiva usa más de un proceso, en la captura de pantalla anterior lo podemos notar, además, podemos ver que está al 100% de su capacidad, mi computador es de 2.00 GHz y en ese momento está trabajando a 1.99 GHz.
+El uso de memoria crece junto con el tamaño de la matriz N de forma lineal, sin embargo, es importante destacar que estamos trabajando en un gráfico bilogaritmico, por lo tanto crece de manera lineal pero manteniendo constantes las proporciones, esa es la gracia de este tipo de gráfico
