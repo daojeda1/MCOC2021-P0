@@ -145,3 +145,12 @@ A continuación, podemos ver el gráfico con tiempos promedio de 10 corridas par
 
 Definitiva usa más de un proceso, en la captura de pantalla anterior lo podemos notar, además, podemos ver que está al 100% de su capacidad, mi computador es de 2.00 GHz y en ese momento está trabajando a 1.99 GHz.
 El uso de memoria crece junto con el tamaño de la matriz N de forma lineal, sin embargo, es importante destacar que estamos trabajando en un gráfico bilogaritmico, por lo tanto crece de manera lineal pero manteniendo constantes las proporciones, esa es la gracia de este tipo de gráfico
+
+######################################################################################################################################################################
+
+# "Matrices dispersas y complejidad computacional"
+
+```2*sparse.eye(N,dtype=dtype)-sparse.eye(N,N,1,dtype=dtype)-sparse.eye(N,N,-1,dtype=dtype)```
+
+Esta linea de codigo utiliza el formato sparse de scipy, lo interesante, es que la matriz es la misma laplaciana de la entrega anterior con "2" en la diagonal principal y con "-1" en las diagonales adyacentes a la principal, solo que el formato es distinto, ya que no considera ninguno de los ceros de la matriz, los cuales representan la mayoria de los datos de nuestro problema y por lo tanto, la mayoria de la memoria que utilizará el computador multiplicando ceros con valores que de antemano sabremos el resultado, por lo tanto, al usar sparse, siguiendo el mismo formato de la matriz laplaciana mencionada, logramos no almacenar los ceros recien mencionados que tanto ralentizan la solucion de nuestro problema. 
+Por otro lado, para esta entrega se crean las matrices A y B, las que luego se multiplican usando matmul (@), y podemos notar que si son dispersas, la capacidad del computador aumenta considerablemente, llegando a valores cercanos a los 50 millones para el N mas grande.
