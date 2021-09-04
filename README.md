@@ -154,3 +154,53 @@ El uso de memoria crece junto con el tamaño de la matriz N de forma lineal, sin
 
 Esta linea de codigo utiliza el formato sparse de scipy, lo interesante, es que la matriz es la misma laplaciana de la entrega anterior con "2" en la diagonal principal y con "-1" en las diagonales adyacentes a la principal, solo que el formato es distinto, ya que no considera ninguno de los ceros de la matriz, los cuales representan la mayoria de los datos de nuestro problema y por lo tanto, la mayoria de la memoria que utilizará el computador multiplicando ceros con valores que de antemano sabremos el resultado, por lo tanto, al usar sparse, siguiendo el mismo formato de la matriz laplaciana mencionada, logramos no almacenar los ceros recien mencionados que tanto ralentizan la solucion de nuestro problema. 
 Por otro lado, para esta entrega se crean las matrices A y B, las que luego se multiplican usando matmul (@), y podemos notar que si son dispersas, la capacidad del computador aumenta considerablemente, llegando a valores cercanos a los 50 millones para el N mas grande.
+
+######################################################################################################################################################################
+
+# "Matrices dispersas y complejidad computacional (parte 2)"
+
+Comente las diferencias que ve en el comportamiento de los algoritmos en el caso de matrices llenas y dispersas.
+
+Claramente para las matrices llenas, las operaciones son ampliamente más complejas que las dispersas, esto es valido para solve, inv y matmul. Sin embargo, la velocidad a la cual el programa es capaz de crear las matrices necesarias para las operaciones es similar en ambas, siendo algo mas rapido en matrices del tipo sparse pero con diferencias realmente increibles a la hora de trabajarlas en las operaciones matematicas
+
+¿Cual parece la complejidad asintótica (para N→∞)  para el ensamblado y solución en ambos casos y porqué?
+1. Matmul:
+a) Dispersa: Ensamblado N^3 y Solucion N^3
+b) Llena: Ensamblado N^4 y Solucion N^4
+
+2. Solve
+4. a) Dispersa: Ensamblado N^3 y Solucion N^3
+b) Llena: Ensamblado N^4 y Solucion N^3
+
+3. Inv
+a) Dispersa: Ensamblado N^4 y Solucion N^1
+b) Llena: Ensamblado N^4 y Solucion N^2
+
+¿Como afecta el tamaño de las matrices al comportamiento aparente?
+Al principio, para valores notablemente inferiores a los que el computador es capaz de procesar, nos damos cuenta que el tamaño no afecta de manera muy considerable para el crecimiento de la matriz Ns, sin embargo, a medida que el problema se complejiza en tamaño, podemos ver que puede el tiempo crecer de manera exponencial para solucionar el problema, es decir, si N se duplica, dt (tiempo antes de duplicar N) puede seguir un comportamiento de creciemiento exponencial, para detallarlo en cada tipo, suponiendo una duplicacion en la diagonal de N, tenemos que el nuevo dt puede ser:
+Para N duplicado:
+O(N) dt(antiguo) = 2dt
+O(N^2) dt(antiguo) = 2^2 * dt
+O(N^3) dt(antiguo) = 2^3 * dt
+O(N^4) dt(antiguo) = 2^4 * dt
+
+Llegando incluso a 16 veces el tiempo para una matriz de tan solo el doble de tamaño
+
+¿Qué tan estables son las corridas (se parecen todas entre si siempre, nunca, en un rango)?
+Las corridas son relativamente estables en todos los casos, de esto nos podemos percatar debido a que para todas se grafican 10 corridas distintas en un mismo ploteo y si bien no todas las lineasson iguales, a medida que aumenta el tamaño de N podemos ver como todas se huntan y siguen una misma tendencia (cte, N, N^2, N^3, N^4,). De todas formas, hay una excepcion la cual no se comporto demasiado estable y por lo mismo corri el programa varias veces para ver si habia algun error, estoy hablando del caso INV para matrices dispersas, el cual, luego de analizarlo, me di cuenta de que esto se debe a que para matrices dispersas es notablemente mas rapido la operacion, por lo tanto, no alcanza a verse tan exigida como para que los tiempos de las 10 corridas se alinien en alguna tendencia demarcada con las lineas punteadas. (Adjunto gráfico mencionado)
+
+![Rendimiento Inv Dispersa](https://user-images.githubusercontent.com/53507891/132078150-5d48131a-3ff5-40ce-9284-e02a5c9fc83f.jpg)
+
+Ademas adjunto el caso SOLVE para matrices Llenas, el cual sirve como ejemplo de la estabilidad de las corridas, que si bien no son tan estable en valores pequeños de N, podemos ver como a medida que crece, existe una alineacion de los tiempos y sigue una tendencia de manera mas clara:
+
+![Rendimiento SOLVE Llena](https://user-images.githubusercontent.com/53507891/132078188-6865f7b5-1d97-46da-ab67-1a1b47dad24c.jpg)
+
+
+Incluya en su README.md el código de ensamblaje de la matriz laplaciana usada por Ud. 
+
+```2*sparse.eye(N,dtype=dtype)-sparse.eye(N,N,1,dtype=dtype)-sparse.eye(N,N,-1,dtype=dtype)```
+
+Esta funcion de ensamblaje de la matriz dispersa me di cuenta que probablemente no es la mejor, porque para muchos casos su complejidad es de N^4, la cual, claramente no es la mejor, quizas sea bueno indagar en otras formas de ensamblar la matriz dispersa, que si bien tiene indudables cualidades a la hora de realizar operaciones con ella, en caso de estar mal ensamblada (de una forma poco eficiente), arruina de cierta forma sus caracterisitcas tan beneficiosas
+
+
+
